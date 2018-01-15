@@ -1,6 +1,12 @@
 var employee = require('./scheme_employee.js');
+var bcrypt = require('bcryptjs');
 
 module.exports.register = function (req, res) {
+
+    // Encrypting the password
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(req.body.password, salt);
+
     var employeeInfo = {
         name: req.body.name || null,
         id: null,
@@ -12,7 +18,7 @@ module.exports.register = function (req, res) {
         manager: req.body.manager || null, // Manager ID
         local_phone: req.body.local_phone || null,
         email: req.body.email,
-        password: req.body.password,
+        password: hash, // encrypted hash
         date_of_join: req.body.date_of_join || null,
         attendance_balance: req.body.attendance_balance || null
     }

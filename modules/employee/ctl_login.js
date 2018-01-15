@@ -2,11 +2,6 @@ var employee = require('./scheme_employee.js');
 
 module.exports.login = function (req, res) {
 
-    var employeeInfo = {
-        email: req.body.email,
-        password: req.body.password
-    }
-
     employee.findOne({ 'email': req.body.email }, function (err, emp) {
         
         var response = {
@@ -19,7 +14,7 @@ module.exports.login = function (req, res) {
             res.status(code).json(err);
             return;
         }
-        else if (emp && emp.password === req.body.password) {
+        else if (emp && bcrypt.compareSync(req.body.password, emp.password)) {
             response.message = 'SUCCESS';
             response.employee = emp;
             code = 200;
