@@ -2,7 +2,7 @@ var employee = require('./scheme_employee.js');
 
 module.exports.remove = function (req, res) {
 
-    var query = { 'email': req.body.email }
+    var query = { 'email': req.email }
     employee.remove(query,  function (err, doc) {
 
         var response = { // default response body
@@ -10,7 +10,7 @@ module.exports.remove = function (req, res) {
         }
         var code = 400; //default code
 
-        if (!err) {
+        if (err == null) {
             response.message = 'SUCCESS';
             code = 200;
         }

@@ -4,6 +4,7 @@ var read = require('./ctl_login.js');
 var create = require('./ctl_register.js');
 var update = require('./ctl_update.js');
 var deleteEmployee = require('./ctl_delete.js');
+var auth = require('../../config/auth_token');
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
