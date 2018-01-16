@@ -21,7 +21,7 @@ module.exports.login = function (req, res) {
 
             // Create a login token
             var token = jwt.sign({
-                username: emp.email,
+                email: emp.email,
                 name: emp.name
             }, auth.TOKEN_SECRET, { expiresIn: 60 * 60 });
             response.message = 'SUCCESS';

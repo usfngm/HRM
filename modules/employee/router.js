@@ -24,6 +24,6 @@ router.post('/register', create.register);
 router.put('/edit', update.edit);
  
 // Delete
-router.delete('/delete', deleteEmployee.remove);
+router.delete('/delete', auth.checkToken, deleteEmployee.remove);
 
 module.exports = router;
