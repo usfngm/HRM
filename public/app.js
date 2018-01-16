@@ -1,8 +1,6 @@
-var app = angular.module("myApp", []); 
 
-app.controller('myCtrl', function($scope) {
-    $scope.firstName = "John";
-    $scope.lastName = "Doe";
+// Root Module
+angular.module('hrmAPP', ['ui.router', 'emp']); 
 
-    console.log($scope.firstName);
-});
+// Employee Module
+angular.module('emp', []);
