@@ -10,7 +10,7 @@ module.exports.remove = function (req, res) {
         if (err) {
             res
                 .status(400)
-                .json({message: 'UNKNOWN_ERR'});
+                .json({message: 'UNKNOWN_ERR', error: err});
         } else {
             if (model) {
                 model

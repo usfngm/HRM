@@ -1,9 +1,12 @@
+
 var employee = require('./scheme_employee.js');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var auth = require('../../config/auth_token');
 
 module.exports.login = function (req, res) {
+
+    console.log('login request username= ' + req.body.email + ' password=' + req.body.password);
 
     employee.findOne({ 'email': req.body.email }, function (err, emp) {
 
@@ -32,7 +35,15 @@ module.exports.login = function (req, res) {
         else {
             response.message = 'WRONG_CREDS';
         }
-        res.status(code).json(response);
+
+        /*
+            Add a 1 second delay before sending response to simulate
+            a real server delay
+        */
+        setTimeout(function() {
+            res.status(code).json(response);
+        }, 1000);
+        
     });
 
 };
